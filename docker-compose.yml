@@ -22,32 +22,32 @@ services:
       LIQUIBASE_USERNAME: user
       LIQUIBASE_PASSWORD: password
     volumes:
-      - ./liquibase:/liquibase
+      - ./db:/db
     entrypoint: ["tail", "-f", "/dev/null"] # Keeps the container running
 
-  drone-server:
-    image: drone/drone:2
-    container_name: drone-server
-    environment:
-      DRONE_GITHUB_CLIENT_ID: Ov23li9jl3MsnNNxel8v
-      DRONE_GITHUB_CLIENT_SECRET: fae274e894284bd89a0754bebda6e29b3d551e18
-      DRONE_RPC_SECRET: mydrone_secret
-      DRONE_SERVER_HOST: https://dirty-emus-laugh.loca.lt
-      DRONE_SERVER_PROTO: https
-    ports:
-      - "8080:80"
-    volumes:
-      - drone_data:/data
+  # drone-server:
+  #   image: drone/drone:2
+  #   container_name: drone-server
+  #   environment:
+  #     DRONE_GITHUB_CLIENT_ID: Ov23li9jl3MsnNNxel8v
+  #     DRONE_GITHUB_CLIENT_SECRET: fae274e894284bd89a0754bebda6e29b3d551e18
+  #     DRONE_RPC_SECRET: mydrone_secret
+  #     DRONE_SERVER_HOST: https://dirty-emus-laugh.loca.lt
+  #     DRONE_SERVER_PROTO: https
+  #   ports:
+  #     - "8080:80"
+  #   volumes:
+  #     - drone_data:/data
 
-  drone-runner:
-    image: drone/drone-runner-docker:1
-    container_name: drone-runner
-    environment:
-      DRONE_RPC_PROTO: http
-      DRONE_RPC_HOST: drone-server
-      DRONE_RPC_SECRET: mydrone_secret
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+  # drone-runner:
+  #   image: drone/drone-runner-docker:1
+  #   container_name: drone-runner
+  #   environment:
+  #     DRONE_RPC_PROTO: http
+  #     DRONE_RPC_HOST: drone-server
+  #     DRONE_RPC_SECRET: mydrone_secret
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   postgres_data:

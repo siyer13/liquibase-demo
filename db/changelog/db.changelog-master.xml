@@ -14,4 +14,9 @@
             <column name="email" type="varchar(60)" />
         </createTable>
     </changeSet>
+    <changeSet  id="2"  author="kuttan">  
+        <addColumn  tableName="users">  
+            <column  name="phone"  type="varchar(12)"/>  
+        </addColumn>  
+    </changeSet> 
 </databaseChangeLog>
